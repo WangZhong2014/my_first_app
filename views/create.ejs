@@ -1,16 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/vue/2.4.4/vue.min.js"></script>
-    <script src="https://cdn.bootcss.com/axios/0.16.2/axios.min.js"></script>
-  </head>
-  <body>
-    <div class="container"> 
     <div class="col-md-8 col-md-offset-2">
 
-      <div id="app">
   		<h1> 新建文章</h1>
   		<div class="form-group">
   			<input type="text" class="form-control" v-model='title' placeholder= "输入文字标题">
@@ -23,11 +12,6 @@
   		</div>
   	</div>
     
-    </div>  
-    </div>
-
-  </body>
-  </html>
   <script>
   	var vm = new Vue({
   		el: '#app',
@@ -37,17 +21,22 @@
   		},
   		methods: {
   			submit () {
-  				axios.post('/api/posts/create', {
+  				axios.post('/api/v1/posts', 
+          {
   					title: vm.title,
   					content: vm.content
   				})
   				.then(function (response) {
   					// body...
-  					alert(JSON.stringify(response.data));
+            return response.data;
   				})
+          .then(function(data) {
+            //注意这句
+            window.location = '/posts/show?id=' + data.post._id;
+          })
   				.catch(function (err) {
   					// body...
-  					alert(err);
+  					alert(err.response.data.error);
   				})
   			}
   		}
