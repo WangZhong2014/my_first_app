@@ -20,7 +20,7 @@
     "express-session": "^1.15.6",
     "jwt-simple": "^0.5.1",
     "marked": "^0.3.17",
-    "moment": "^2.21.0",
+    "moment": "^2.29.4",
     "mongoose": "^5.0.10",
     "morgan": "~1.9.0",
     "nodemailer": "^4.6.3",
